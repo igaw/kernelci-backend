@@ -21,6 +21,7 @@
 
 """Common functions, variables for all kernelci utils modules."""
 
+import errno
 import bson
 import os
 import re
@@ -207,3 +208,16 @@ def get_defconfig_full(
             defconfig_full = defconfig_full_k
 
     return defconfig_full
+
+
+def make_path(dir_path):
+    if not os.path.isdir(dir_path):
+        try:
+            os.makedirs(dir_path)
+        except OSError as e:
+            if e.errno == errno.EEXIST:
+                if os.path.isfile(dir_path):
+                    LOG.warn('{} is a file. Expected directory or nothing.'
+                             .format(dir_path))
+            else:
+                raise e
