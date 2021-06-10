@@ -1,4 +1,4 @@
-# Copyright (C) Collabora Limited 2020
+# Copyright (C) Collabora Limited 2021
 # Author: Michal Galka <michal.galka@collabora.com>
 #
 # This program is free software; you can redistribute it and/or modify it under
