@@ -387,6 +387,14 @@ class LogFragmentsMixin(object):
 
     @property
     def start_log_line(self):
+        """ Get line number at which log starts
+
+        Returns line number where login test case ends. It uses regex pattern
+        to find the right place. If the pattern is not found returns 0. This
+        method may be inaccurate if/when LAVA log format changes
+
+        :return line number (int)
+        """
         line_number = self._get_log_line_number(self.LOGIN_CASE_END_PATTERN)
         return 0 if line_number is None else line_number
 
