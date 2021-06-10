@@ -211,6 +211,16 @@ def get_defconfig_full(
 
 
 def make_path(dir_path):
+    """Created path with all intermediate directiories
+
+    Creates directory with the whole path. If directory already exists returns
+    silently. Displays a warning when dir_path exists and is a file.
+
+    :param dir_path: path to create
+    :type dir_path: str
+
+    :return None
+    """
     if not os.path.isdir(dir_path):
         try:
             os.makedirs(dir_path)
