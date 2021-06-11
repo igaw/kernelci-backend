@@ -20,6 +20,10 @@
 
 """Functions and classes to handle errors data structure."""
 
+import utils
+
+LOG = utils.log.get_log()
+
 
 class BackendError(Exception):
 
@@ -64,3 +68,12 @@ def add_error(errors, err_code, err_msg):
         else:
             errors[err_code] = []
             errors[err_code].append(err_msg)
+
+
+def handle_errors(ex=None, msg=None, errors=None):
+    if ex is not None:
+        LOG.exception(ex)
+    if msg is not None:
+        LOG.error(msg)
+    if errors:
+        raise BackendError(errors)
